@@ -5,9 +5,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
-import { Camera, Mail, ArrowRight, Menu, X, Instagram, ChevronRight, PenTool } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { Camera, Mail, ArrowRight, Menu, X, Instagram, ChevronRight, PenTool, Play, Pause } from 'lucide-react';
 
 const FadeIn = ({ children, delay = 0, direction = 'up', className = "" }: { children: React.ReactNode, delay?: number, direction?: 'up' | 'down' | 'left' | 'right', className?: string }) => {
   const getInitial = () => {
@@ -52,10 +52,23 @@ const ParallaxSection = ({ children, offset = 50, className = "" }: { children: 
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.1]);
-  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 150]);
+  const [heroOpacity, setHeroOpacity] = useState(1);
+  const [heroScale, setHeroScale] = useState(1);
+  const [heroY, setHeroY] = useState(0);
+  const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const progress = Math.min(scrollY / (window.innerHeight * 0.2), 1);
+      setHeroOpacity(1 - progress);
+      setHeroScale(1 + progress * 0.1);
+      setHeroY(progress * 150);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="bg-surface text-on-surface selection:bg-secondary/30">
@@ -193,29 +206,12 @@ export default function App() {
                 offset: false,
                 link: "https://revivewardrobe.com/product/regal-rhythm-abaya"
               }].map((item, idx) => (
-                <div key={idx} className={`group ${item.offset ? 'md:mt-32' : ''}`}>
-                  <FadeIn delay={idx * 0.1}>
-                    <div className="relative overflow-hidden mb-8 aspect-[3/4]">
-                      <img 
-                        alt={item.title} 
-                        className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-110"
-                        src={item.img}
-                        referrerPolicy="no-referrer"
-                      />
-                      <div className="absolute top-4 left-4 bg-surface/90 backdrop-blur-md px-4 py-2">
-                        <span className="text-[10px] font-sans tracking-widest uppercase text-primary font-bold">Only One Piece</span>
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      <h3 className="font-serif text-xl text-primary font-bold tracking-tight">{item.title}</h3>
-                      <button 
-                        className="inline-block pt-4 text-[10px] font-sans tracking-widest uppercase border-b border-outline-variant hover:border-primary transition-all hover:cursor-pointer"
-                        onClick={() => window.location.href = item.link}
-                      >
-                        View Piece
-                      </button>
-                    </div>
-                  </FadeIn>
+                <div key={idx} style={{ breakInside: 'avoid', marginBottom: '1rem' }}>
+                  <img 
+                    src={item.img} 
+                    alt={item.title} 
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                  />
                 </div>
               ))}
             </div>
@@ -232,57 +228,39 @@ export default function App() {
               </FadeIn>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[800px]">
-              {/* Large Card */}
-              <div className="relative group overflow-hidden cursor-pointer h-full">
-                <ParallaxSection offset={40} className="h-full">
-                  <FadeIn direction="right" className="h-full">
-                    <img 
-                      src="/assets/Twilight Grace Abaya/long.png" 
-                      alt="Sovereign Look 1" 
-                      className="w-full h-[110%] object-cover transition-transform duration-1000 group-hover:scale-105"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
-                    <div className="absolute inset-x-0 bottom-0 p-8 md:p-12 translate-y-[20px] group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out bg-gradient-to-t from-primary/80 to-transparent">
-                      <h3 className="font-serif text-3xl md:text-4xl text-white font-bold mb-2">The Ethereal Sovereign</h3>
-                      <p className="text-white/80 font-sans text-xs tracking-[0.3em] uppercase">One Piece Exclusively</p>
-                    </div>
-                  </FadeIn>
-                </ParallaxSection>
-              </div>
-
-              {/* Stacked Cards */}
-              <div className="grid grid-rows-2 gap-8 h-full">
-                <div className="relative group overflow-hidden cursor-pointer h-full">
-                  <FadeIn direction="left" delay={0.2} className="h-full">
-                    <img 
-                      src="https://lh3.googleusercontent.com/aida/ADBb0ujWmsIppX-p1Mj3a4Zeiizoctdl2F-yZwoXVK8LLbbkWmhL6ZOKHwnk6PUGVZOXU2SixN9orJH1nMg9SEYx8iYyRjR8jhwaW_q-3YYMfXvZha4LUJlu-L3Atj_UZhKfnZQnvQT7uxdRgxsjdrudusmKQaBP8NwbZ_8c8WR0brUbubHJgQPTmUPZsTDrXpj1A4-567-1i31oSFsR1gXcBj02t0Y26mXOrLcJUTifJbk2tRZrkd-59hgtIQ" 
-                      alt="Sovereign Look 2" 
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
-                    <div className="absolute inset-x-0 bottom-0 p-8 translate-y-[20px] group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out bg-gradient-to-t from-primary/80 to-transparent">
-                      <h3 className="font-serif text-2xl md:text-3xl text-white font-bold">Desert Mirage Silk</h3>
-                    </div>
-                  </FadeIn>
+            <div className="masonry-grid" style={{ columnCount: 3, columnGap: '1rem' }}>
+              {[{
+                title: "Aurora Blossom Abaya",
+                img: "/assets/Aurora Blossom Abaya/long.jpeg",
+              },
+              {
+                title: "Twilight Grace Abaya",
+                img: "/assets/Twilight Grace Abaya/Closeup.png",
+              },
+              {
+                title: "Midnight Elegance Abaya",
+                img: "/assets/Midnight Elegance Abaya/close.png",
+              },
+              {
+                title: "Regal Rhythm Abaya",
+                img: "/assets/Regal Rhythm Abaya/closeup.png",
+              },
+              {
+                title: "Lunar Glow Abaya",
+                img: "/assets/close.png",
+              },
+              {
+                title: "Eternal Noir Abaya",
+                img: "/assets/Eternal Noir Abaya/long.jpg",
+              }].map((item, idx) => (
+                <div key={idx} style={{ breakInside: 'avoid', marginBottom: '1rem' }}>
+                  <img 
+                    src={item.img} 
+                    alt={item.title} 
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                  />
                 </div>
-                <div className="relative group overflow-hidden cursor-pointer h-full">
-                  <FadeIn direction="left" delay={0.3} className="h-full">
-                    <img 
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhganZTwYj91PqFHKYAeQQBfTOyXZ7PWlUMT9NpmFN8rgmkGqunFIG7EPhP1T9ef1stmI4rW0cbcnSoXJqlYGodf7TFiTthEvM_0pQ7DezhzxSgCQuUS2oLYGfDzsyz3UTws5gczDq8mylAL32i4TR3UFlym3oUXGQUfNdly90OvueNXlbHujmA-dRoX0AuiJK_QGQGJEmdWv3zRBPe1J0qZZBtAcH9F1RKQCf4RQ-MOVObDS0YvxUVDjV1-sZSIMIhL1DOBhjfn0" 
-                      alt="Sovereign Look 3" 
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
-                    <div className="absolute inset-x-0 bottom-0 p-8 translate-y-[20px] group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out bg-gradient-to-t from-primary/80 to-transparent">
-                      <h3 className="font-serif text-2xl md:text-3xl text-white font-bold">Onyx Dynasty Wrap</h3>
-                    </div>
-                  </FadeIn>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -296,26 +274,56 @@ export default function App() {
               <p className="mt-8 text-on-surface-variant text-lg font-light max-w-2xl mx-auto italic">Capturing the delicate dialogue between hand-stitched gold and flowing silk.</p>
             </FadeIn>
           </div>
-          
-          <div className="flex overflow-x-auto gap-8 px-6 md:px-12 pb-12 hide-scrollbar snap-x touch-pan-x cursor-grab active:cursor-grabbing">
-            {[1, 2, 3, 4].map((i) => (
+
+          <motion.div
+            className="flex gap-8 px-6 md:px-12 pb-12 hide-scrollbar snap-x touch-pan-x cursor-grab active:cursor-grabbing"
+            animate={{ x: playingVideoIndex !== null ? 0 : [0, -1000, 0] }}
+            transition={{ repeat: playingVideoIndex !== null ? undefined : Infinity, duration: 40, ease: "linear" }}
+          >
+            {[
+              { video: '/videos/5th video.mp4', label: '01' },
+              { video: '/videos/6th video.mp4', label: '02' },
+              { video: '/videos/7th video.mp4', label: '03' },
+              { video: '/videos/8th video.mp4', label: '04' },
+              { video: '/videos/9th video.mp4', label: '05' },
+              { video: '/videos/10th video.mp4', label: '06' },
+              { video: '/videos/12th video.mp4', label: '07' },
+              { video: '/videos/5th video.mp4', label: '08' }
+            ].map((item, index) => (
               <div 
-                key={i} 
+                key={index} 
                 className="min-w-[300px] md:min-w-[450px] aspect-[9/16] bg-surface-container-high relative group overflow-hidden border border-outline-variant/10 shadow-2xl snap-center transition-all duration-700 hover:scale-[1.02]"
               >
-                <img 
-                  src={`https://picsum.photos/seed/abaya${i}/1080/1920`} 
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                  alt={`Motion Frame ${i}`} 
-                  referrerPolicy="no-referrer"
+                <video
+                  ref={(video) => {
+                    if (video && playingVideoIndex === index) {
+                      video.play();
+                    } else if (video) {
+                      video.pause();
+                    }
+                  }}
+                  src={item.video}
+                  className="w-full h-full object-cover"
+                  muted
                 />
                 <div className="absolute inset-0 border-[20px] md:border-[30px] border-transparent group-hover:border-surface/10 transition-all duration-700"></div>
-                <div className="absolute bottom-10 left-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
-                  <span className="text-white font-sans text-[10px] tracking-widest uppercase bg-primary/40 backdrop-blur-md px-6 py-3">View Perspective 0{i}</span>
-                </div>
+                <button
+                  onClick={() => {
+                    setPlayingVideoIndex(playingVideoIndex === index ? null : index);
+                  }}
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/20"
+                >
+                  <div className="bg-primary/80 p-4 rounded-full hover:bg-primary/100 transition-all">
+                    {playingVideoIndex === index ? (
+                      <Pause size={32} className="text-white" fill="white" />
+                    ) : (
+                      <Play size={32} className="text-white" fill="white" />
+                    )}
+                  </div>
+                </button>
               </div>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         {/* Designer Profile */}
