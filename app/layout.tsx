@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import './globals.css';
+import logo from '../public/assets/revive logo.png';
 
 export const metadata: Metadata = {
   title: 'Revive Wardrobe - High Fashion Editorial',

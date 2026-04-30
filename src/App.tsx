@@ -65,7 +65,7 @@ export default function App() {
           {/* Logo Attached */}
           <div className="h-12 md:h-16 flex items-center">
              <img 
-               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq_vH9Y8Rz7n6G7uBv9k7mF8j1l5oP6q3w4e5r6t7y8u9i0o1p2a3s4d5f6g7h8j9k0" 
+               src="/assets/revive logo.png" 
                alt="Revive Wardrobe Logo" 
                className="h-full w-auto object-contain"
                onError={(e) => {
@@ -118,7 +118,7 @@ export default function App() {
             <img 
               alt="Cinematic high-fashion editorial of a woman in a luxurious red and gold abaya" 
               className="w-full h-[120%] object-cover"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhganZTwYj91PqFHKYAeQQBfTOyXZ7PWlUMT9NpmFN8rgmkGqunFIG7EPhP1T9ef1stmI4rW0cbcnSoXJqlYGodf7TFiTthEvM_0pQ7DezhzxSgCQuUS2oLYGfDzsyz3UTws5gczDq8mylAL32i4TR3UFlym3oUXGQUfNdly90OvueNXlbHujmA-dRoX0AuiJK_QGQGJEmdWv3zRBPe1J0qZZBtAcH9F1RKQCf4RQ-MOVObDS0YvxUVDjV1-sZSIMIhL1DOBhjfn0"
+              src="/assets/hero.jpg"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
@@ -169,34 +169,36 @@ export default function App() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20">
-              {[
-                {
-                  title: "The Crimson Night Abaya",
-                  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAl0qzznGGkzr81-BU-ZY3FZv6ie-yph48_jfljEtAC35WvJMJ-R-dBG0-ThczrtxL08M_qx2_RkJST0exHMfqLOLlKh5r_oLMIy5Vi7wcf3g8TzjT1tAfXH0I2-f-MqpMVHV_ES6nZQXH5vpBazrb0xDJ40A1j5K4eOSEbL9NG-s7knO3z2BJVXDH5rlZDtsv0ucYrC3tpePjhKYRyKaHnKsf5t9a2atNXwxB4LRTrYfK9DYG2CvOvBqe_odJBuzjUf2m0djpLJ2g",
-                  offset: false
-                },
-                {
-                  title: "Dune Sculpture Gown",
-                  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCVKq2vBNXpJvz3DOby9uumebQqKqn9T_rmAV8-TYiMFnm92-hdHKgBThI3VXbLB0_gP42W30EoHdkzGqdZyUGVxTHPjsZcjBO6f8JuRbSaNJ638vdaLZPcxxElaZypza8z2We81Yn15S-bhfayihB9Vxp_eXi6VfYtRxNBIOL1EPKpkWpxe2iZ87_GE6sARNEG586Hg8I8i65NcvS6VKHn5TGd51b0p-5IyogQoM8PGN0qO0PIKnkug-3fcX_TfIFdPgntTLg5iZM",
-                  offset: true
-                },
-                {
-                  title: "Imperial Jalabiya",
-                  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD9OIQ8clYTO4lWrSLR0OjjiAYfQ440vggu0m9OOLEgxEJb-Gxiv7Llk_em5neoO1W9B0H2ZZ6dVbmvehWj_6HtskgDSc_u_Y7xR7h1sdZNOOiGtVAJ92TSfHnsGXswbQfy2n043wDFobjlXjv-VTRiYzoYgi8l8mfZ4oztQxhUyeLpwKJrddyMa2_bN1PBXfP3RlfacevsJqB-6RuIjD36F0zAsMdtbKPBhdYbh9FVJZBzOTON_FqIi2GxIFrJbkLznKP94NLjtRw",
-                  offset: false
-                },
-                {
-                  title: "Abstract Mughal Set",
-                  img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCxhC7V2Ay34IIMXKUH1gyYadSXMI8dFyzWJeFdf8cjleL3dphcc8ksPpbPk-Vd1StB_t89KFFD4mxZ84fT9WpMS8vy_tRb9m4AKDGOjDdR0dNj4tr6T4ZOA0EJo6CY9J2hN-RmcOGkPrjXI15KaIXKwKztiY72_klXCvucdWu-nuHms7tgN4cXLTTV0BmOgrlqb93EtQX73ziocI7cBT5p1q21qFzhsK-u0zy3oVWojtGle4ypRfvJfGyFfp8Hs57jfehT1iyGx1w",
-                  offset: true
-                }
-              ].map((item, idx) => (
+              {[{
+                title: "Aurora Blossom Abaya",
+                img: "assets/Aurora Blossom Abaya/close.png",
+                offset: false,
+                link: "https://revivewardrobe.com/product/aurora-blossom-abaya"
+              },
+              {
+                title: "Twilight Grace Abaya",
+                img: "/assets/Twilight Grace Abaya/Closeup.png",
+                offset: true,
+                link: "https://revivewardrobe.com/product/twilight-grace-abaya"
+              },
+              {
+                title: "Midnight Elegance Abaya",
+                img: "/assets/Midnight Elegance Abaya/close.png",
+                offset: true,
+                link: "https://revivewardrobe.com/product/midnight-elegance-abaya"
+              },
+              {
+                title: "Regal Rhythm Abaya",
+                img: "/assets/Regal Rhythm Abaya/closeup.png",
+                offset: false,
+                link: "https://revivewardrobe.com/product/regal-rhythm-abaya"
+              }].map((item, idx) => (
                 <div key={idx} className={`group ${item.offset ? 'md:mt-32' : ''}`}>
                   <FadeIn delay={idx * 0.1}>
                     <div className="relative overflow-hidden mb-8 aspect-[3/4]">
                       <img 
                         alt={item.title} 
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                        className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-110"
                         src={item.img}
                         referrerPolicy="no-referrer"
                       />
@@ -206,7 +208,10 @@ export default function App() {
                     </div>
                     <div className="space-y-3">
                       <h3 className="font-serif text-xl text-primary font-bold tracking-tight">{item.title}</h3>
-                      <button className="inline-block pt-4 text-[10px] font-sans tracking-widest uppercase border-b border-outline-variant hover:border-primary transition-all">
+                      <button 
+                        className="inline-block pt-4 text-[10px] font-sans tracking-widest uppercase border-b border-outline-variant hover:border-primary transition-all hover:cursor-pointer"
+                        onClick={() => window.location.href = item.link}
+                      >
                         View Piece
                       </button>
                     </div>
@@ -233,7 +238,7 @@ export default function App() {
                 <ParallaxSection offset={40} className="h-full">
                   <FadeIn direction="right" className="h-full">
                     <img 
-                      src="https://lh3.googleusercontent.com/aida/ADBb0ujPT5sz-43HxhDuOBA_tD6Kv6_OWQQu1I-yS_F4iKaXF6IoOoz28mwoBr0eUDKpx0xxZTd1gfPxr35E55V7S5YU8GK-o_FY1cZdTw30lScltnW12tK3nYD-F1VogKhW99x8Ekuz9jVf_Xs-l2JKR0Ioc2CQqyhKbl2iMXxQzGGLUb79xqINmgfBE9CFa804aLy4f0xfeCwiVF5J7Ribpyd6XpZiYZl9z0VJ41Ps_r2Qadp6KHaWD3OFeL8" 
+                      src="/assets/Twilight Grace Abaya/long.png" 
                       alt="Sovereign Look 1" 
                       className="w-full h-[110%] object-cover transition-transform duration-1000 group-hover:scale-105"
                       referrerPolicy="no-referrer"
