@@ -56,6 +56,7 @@ export default function App() {
   const [heroScale, setHeroScale] = useState(1);
   const [heroY, setHeroY] = useState(0);
   const [playingVideoIndex, setPlayingVideoIndex] = useState<number | null>(null);
+  const atelierSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,6 +70,26 @@ export default function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Stop video when Atelier section goes out of view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && playingVideoIndex !== null) {
+          setPlayingVideoIndex(null);
+        }
+      },
+      { threshold: 0 }
+    );
+
+    if (atelierSectionRef.current) {
+      observer.observe(atelierSectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [playingVideoIndex]);
 
   return (
     <div className="bg-surface text-on-surface selection:bg-secondary/30">
@@ -206,12 +227,25 @@ export default function App() {
                 offset: false,
                 link: "https://revivewardrobe.com/product/regal-rhythm-abaya"
               }].map((item, idx) => (
-                <div key={idx} style={{ breakInside: 'avoid', marginBottom: '1rem' }}>
-                  <img 
-                    src={item.img} 
-                    alt={item.title} 
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
-                  />
+                <div key={idx} className={`flex flex-col gap-6 ${(idx === 1 || idx === 3) ? 'mt-50' : ''}`}>
+                  <div className="group relative overflow-hidden">
+                    <img 
+                      src={item.img} 
+                      alt={item.title} 
+                      className="w-full h-auto display-block group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-3">
+                    <h3 className="text-primary font-serif text-2xl md:text-3xl font-bold tracking-tighter">{item.title}</h3>
+                    <a 
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary font-sans text-xs tracking-widest uppercase underline underline-offset-2 hover:text-secondary transition-all inline-block w-fit"
+                    >
+                      View Piece
+                    </a>
+                  </div>
                 </div>
               ))}
             </div>
@@ -266,7 +300,7 @@ export default function App() {
         </section>
 
         {/* Atelier in Motion */}
-        <section className="py-32 md:py-48 bg-surface overflow-hidden">
+        <section ref={atelierSectionRef} className="py-32 md:py-48 bg-surface overflow-hidden">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12 mb-20 text-center">
             <FadeIn>
               <span className="font-sans text-xs tracking-[0.4em] uppercase text-secondary mb-6 block">Visual Poetry</span>
@@ -311,7 +345,7 @@ export default function App() {
                   onClick={() => {
                     setPlayingVideoIndex(playingVideoIndex === index ? null : index);
                   }}
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/20"
+                  className="absolute inset-0 flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 hover:bg-black/20"
                 >
                   <div className="bg-primary/80 p-4 rounded-full hover:bg-primary/100 transition-all">
                     {playingVideoIndex === index ? (
@@ -336,7 +370,7 @@ export default function App() {
                   <img 
                     alt="Rukhsana Shaik Portrait" 
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" 
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-bZMaXtGgz8U-BwpVvug3ok8_AGTl23YRvJgfqt8a8YHfJdezGo70ohrCDICGXpoIPiNf-EzpULSYm2M5pd-b0ouuFtKCg2vnPO3E142ZaM3CSYR0Zaqtsj_jyeBn8-WrEbUgUqfloopNDs89ouaMkTEFXRu_rPMo146IfIQKLqSP6W1iqljgdg44czAUSAMcYJ9ZdW1zbU5mI_11IF-YAeJdUIhl-sS3KtAgtcYWM96iQVMiMh6Ipw3Y_nBHuvI4SGYF-AsgviQ"
+                    src="/assets/R-icon-f.png"
                     referrerPolicy="no-referrer"
                   />
                 </div>
@@ -388,15 +422,12 @@ export default function App() {
           <div className="max-w-4xl mx-auto px-6 relative z-10 flex flex-col items-center text-center">
             <FadeIn>
               <h2 className="font-serif text-5xl md:text-8xl text-primary mb-10 font-bold tracking-tighter">A Bespoke Legacy</h2>
-              <p className="max-w-xl text-on-surface-variant text-lg md:text-xl font-light mb-16 leading-relaxed">
+              <p className="max-w-xl mx-auto text-on-surface-variant text-lg md:text-xl font-light mb-16 leading-relaxed">
                 If our current collection has already found its owners, Rukhsana Shaik offers private commissions. We will design a piece exclusively for your silhouette and spirit.
               </p>
-              <div className="flex flex-col md:flex-row gap-8 w-full md:w-auto">
+              <div className="flex flex-col md:flex-row gap-8 w-full md:w-auto justify-center">
                 <button className="bg-primary text-white px-12 md:px-16 py-6 text-xs tracking-[0.3em] uppercase font-bold hover:bg-primary-container transition-all hover:scale-[1.05]">
-                  Request a Custom Piece
-                </button>
-                <button className="border border-primary text-primary px-12 md:px-16 py-6 text-xs tracking-[0.3em] uppercase font-bold hover:bg-primary hover:text-white transition-all hover:scale-[1.05]">
-                  Consultation
+                  Grab your unique piece
                 </button>
               </div>
             </FadeIn>
@@ -408,13 +439,6 @@ export default function App() {
       <footer className="w-full border-t border-outline-variant/10 bg-surface-container-low px-6 md:px-12 py-20 md:py-32 flex flex-col items-center gap-16">
         <div className="text-4xl md:text-5xl font-serif font-bold tracking-[0.1em] text-primary">REVIVE WARDROBE</div>
         
-        <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
-          {['Collection', 'Story', 'Legal', 'Archive'].map((item) => (
-            <a key={item} href="#" className="font-sans text-[10px] tracking-[0.3em] uppercase text-outline hover:text-secondary transition-all">
-              {item}
-            </a>
-          ))}
-        </div>
 
         <div className="flex gap-10">
           <a href="#" className="text-secondary hover:opacity-70 transition-opacity"><Instagram size={24} strokeWidth={1} /></a>
