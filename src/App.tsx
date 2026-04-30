@@ -7,7 +7,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Camera, Mail, ArrowRight, Menu, X, Instagram, ChevronRight, PenTool, Play, Pause } from 'lucide-react';
+import { Facebook, Phone, ArrowRight, Menu, X, Instagram, ChevronRight, PenTool, Play, Pause } from 'lucide-react';
 
 const FadeIn = ({ children, delay = 0, direction = 'up', className = "" }: { children: React.ReactNode, delay?: number, direction?: 'up' | 'down' | 'left' | 'right', className?: string }) => {
   const getInitial = () => {
@@ -98,27 +98,27 @@ export default function App() {
         <div className="flex items-center">
           {/* Logo Attached */}
           <div className="h-12 md:h-16 flex items-center">
-             <img 
-               src="/assets/revive logo.png" 
-               alt="Revive Wardrobe Logo" 
-               className="h-full w-auto object-contain"
-               onError={(e) => {
-                 // Fallback if the URL isn't working or provided yet
-                 e.currentTarget.style.display = 'none';
-                 e.currentTarget.parentElement!.innerHTML = '<div class="text-2xl font-serif font-bold tracking-tighter text-primary">REVIVE</div>';
-               }}
-               referrerPolicy="no-referrer"
-             />
+            <img
+              src="/assets/revive logo.png"
+              alt="Revive Wardrobe Logo"
+              className="h-full w-auto object-contain"
+              onError={(e) => {
+                // Fallback if the URL isn't working or provided yet
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.parentElement!.innerHTML = '<div class="text-2xl font-serif font-bold tracking-tighter text-primary">REVIVE</div>';
+              }}
+              referrerPolicy="no-referrer"
+            />
           </div>
         </div>
-        
+
         <div className="hidden md:flex items-center gap-12">
           <a href="#collection" className="font-serif tracking-widest uppercase text-[11px] hover:text-secondary transition-colors duration-500">Collection</a>
           <a href="#story" className="font-serif tracking-widest uppercase text-[11px] hover:text-secondary transition-colors duration-500">Revive Story</a>
           <a href="#bespoke" className="font-serif tracking-widest uppercase text-[11px] hover:text-secondary transition-colors duration-500">Bespoke</a>
         </div>
 
-        <button 
+        <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden text-primary p-2"
         >
@@ -128,7 +128,7 @@ export default function App() {
         {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -145,23 +145,23 @@ export default function App() {
       <main>
         {/* Cinematic Hero */}
         <section className="relative h-[120vh] w-full flex items-end justify-center overflow-hidden">
-          <motion.div 
+          <motion.div
             style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
             className="absolute inset-0 z-0 h-full"
           >
-            <img 
-              alt="Cinematic high-fashion editorial of a woman in a luxurious red and gold abaya" 
+            <img
+              alt="Cinematic high-fashion editorial of a woman in a luxurious red and gold abaya"
               className="w-full h-[120%] object-cover"
               src="/assets/hero.jpg"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
           </motion.div>
-          
+
           <div className="relative z-10 text-center px-6 pb-40 max-w-5xl">
             <FadeIn>
               <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight tracking-tight">
-                Not Made for Everyone.<br/>Made for You.
+                Not Made for Everyone.<br />Made for You.
               </h1>
               <p className="font-sans text-[10px] md:text-xs text-white/80 tracking-[0.4em] uppercase">
                 A single design. A single owner.
@@ -229,15 +229,15 @@ export default function App() {
               }].map((item, idx) => (
                 <div key={idx} className={`flex flex-col gap-6 ${(idx === 1 || idx === 3) ? 'mt-50' : ''}`}>
                   <div className="group relative overflow-hidden">
-                    <img 
-                      src={item.img} 
-                      alt={item.title} 
+                    <img
+                      src={item.img}
+                      alt={item.title}
                       className="w-full h-auto display-block group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <div className="flex flex-col gap-3">
                     <h3 className="text-primary font-serif text-2xl md:text-3xl font-bold tracking-tighter">{item.title}</h3>
-                    <a 
+                    <a
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -261,7 +261,7 @@ export default function App() {
                 <h2 className="font-serif text-5xl md:text-7xl text-primary font-bold tracking-tighter">The Sovereign Collection</h2>
               </FadeIn>
             </div>
-            
+
             <div className="masonry-grid" style={{ columnCount: 3, columnGap: '1rem' }}>
               {[{
                 title: "Aurora Blossom Abaya",
@@ -288,9 +288,9 @@ export default function App() {
                 img: "/assets/Eternal Noir Abaya/long.jpg",
               }].map((item, idx) => (
                 <div key={idx} style={{ breakInside: 'avoid', marginBottom: '1rem' }}>
-                  <img 
-                    src={item.img} 
-                    alt={item.title} 
+                  <img
+                    src={item.img}
+                    alt={item.title}
                     style={{ width: '100%', height: 'auto', display: 'block' }}
                   />
                 </div>
@@ -324,8 +324,8 @@ export default function App() {
               { video: '/videos/12th video.mp4', label: '07' },
               { video: '/videos/5th video.mp4', label: '08' }
             ].map((item, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="min-w-[300px] md:min-w-[450px] aspect-[9/16] bg-surface-container-high relative group overflow-hidden border border-outline-variant/10 shadow-2xl snap-center transition-all duration-700 hover:scale-[1.02]"
               >
                 <video
@@ -367,9 +367,9 @@ export default function App() {
               <FadeIn direction="right">
                 <div className="absolute -top-12 -left-12 w-48 h-48 border border-secondary/20 hidden lg:block"></div>
                 <div className="relative overflow-hidden aspect-[3/4]">
-                  <img 
-                    alt="Rukhsana Shaik Portrait" 
-                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" 
+                  <img
+                    alt="Rukhsana Shaik Portrait"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                     src="/assets/R-icon-f.png"
                     referrerPolicy="no-referrer"
                   />
@@ -379,7 +379,7 @@ export default function App() {
                 </div>
               </FadeIn>
             </div>
-            
+
             <div className="w-full lg:w-7/12 space-y-10 order-1 lg:order-2 text-center lg:text-left">
               <FadeIn direction="left">
                 <span className="font-sans text-xs tracking-[0.4em] uppercase text-outline block mb-6">The Creative Mind</span>
@@ -436,18 +436,18 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-outline-variant/10 bg-surface-container-low px-6 md:px-12 py-20 md:py-32 flex flex-col items-center gap-16">
+      <footer className="w-full border-t border-outline-variant/10 bg-surface-container-low px-6 md:px-12 pt-20 md:pt-32 pb-8 flex flex-col items-center gap-16">
         <div className="text-4xl md:text-5xl font-serif font-bold tracking-[0.1em] text-primary">REVIVE WARDROBE</div>
-        
+
 
         <div className="flex gap-10">
-          <a href="#" className="text-secondary hover:opacity-70 transition-opacity"><Instagram size={24} strokeWidth={1} /></a>
-          <a href="#" className="text-secondary hover:opacity-70 transition-opacity"><Camera size={24} strokeWidth={1} /></a>
-          <a href="#" className="text-secondary hover:opacity-70 transition-opacity"><Mail size={24} strokeWidth={1} /></a>
+          <a href="https://www.instagram.com/premium.abayas.uae?igsh=MW9wcm42d3BtaWQwZg%3D%3D" className="hover:opacity-70 transition-opacity" style={{ color: '#610000' }}><Instagram size={32} strokeWidth={2} /></a>
+          <a href="https://www.facebook.com/revivewardrobe/" className="hover:opacity-70 transition-opacity" style={{ color: '#610000' }}><Facebook size={32} strokeWidth={2} /></a>
+          <a href="tel:+971582447684" className="hover:opacity-70 transition-opacity" style={{ color: '#610000' }}><Phone size={32} strokeWidth={2} /></a>
         </div>
 
         <div className="font-sans text-[10px] tracking-[0.3em] uppercase text-outline/50 border-t border-outline-variant/10 pt-16 w-full text-center">
-          © {new Date().getFullYear()} THE EDITORIAL GALLERY. ALL RIGHTS RESERVED.
+          © {new Date().getFullYear()} REVIVE WARDROBE. ALL RIGHTS RESERVED.
         </div>
       </footer>
     </div>
