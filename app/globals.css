@@ -53,3 +53,42 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Sovereign Collection — mobile auto-scroll carousel */
+.sovereign-mobile-carousel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.sovereign-scroll-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: sovereign-scroll 20s linear infinite;
+}
+
+.sovereign-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+.sovereign-scroll-item {
+  flex: none;
+  width: 65vw;
+  max-width: 260px;
+}
+
+.sovereign-scroll-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+@keyframes sovereign-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

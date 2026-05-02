@@ -262,7 +262,37 @@ export default function App() {
               </FadeIn>
             </div>
 
-            <div className="masonry-grid" style={{ columnCount: 3, columnGap: '1rem' }}>
+            {/* Mobile: auto-scrolling carousel */}
+            <div className="sovereign-mobile-carousel md:hidden">
+              <div className="sovereign-scroll-track">
+                {[
+                  { title: "Aurora Blossom Abaya", img: "/assets/Aurora Blossom Abaya/long.jpeg" },
+                  { title: "Twilight Grace Abaya", img: "/assets/Twilight Grace Abaya/Closeup.png" },
+                  { title: "Midnight Elegance Abaya", img: "/assets/Midnight Elegance Abaya/close.png" },
+                  { title: "Regal Rhythm Abaya", img: "/assets/Regal Rhythm Abaya/closeup.png" },
+                  { title: "Lunar Glow Abaya", img: "/assets/close.png" },
+                  { title: "Eternal Noir Abaya", img: "/assets/Eternal Noir Abaya/long.jpg" },
+                  /* Duplicate for seamless loop */
+                  { title: "Aurora Blossom Abaya", img: "/assets/Aurora Blossom Abaya/long.jpeg" },
+                  { title: "Twilight Grace Abaya", img: "/assets/Twilight Grace Abaya/Closeup.png" },
+                  { title: "Midnight Elegance Abaya", img: "/assets/Midnight Elegance Abaya/close.png" },
+                  { title: "Regal Rhythm Abaya", img: "/assets/Regal Rhythm Abaya/closeup.png" },
+                  { title: "Lunar Glow Abaya", img: "/assets/close.png" },
+                  { title: "Eternal Noir Abaya", img: "/assets/Eternal Noir Abaya/long.jpg" },
+                ].map((item, idx) => (
+                  <div key={idx} className="sovereign-scroll-item">
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      className="sovereign-scroll-img"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tablet & Desktop: masonry grid */}
+            <div className="masonry-grid hidden md:block" style={{ columnCount: 3, columnGap: '1rem' }}>
               {[{
                 title: "Aurora Blossom Abaya",
                 img: "/assets/Aurora Blossom Abaya/long.jpeg",
@@ -300,7 +330,7 @@ export default function App() {
         </section>
 
         {/* Atelier in Motion */}
-        <section ref={atelierSectionRef} className="py-32 md:py-48 bg-surface overflow-hidden">
+        <section ref={atelierSectionRef} className="py-16 md:py-24 bg-surface overflow-hidden">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12 mb-20 text-center">
             <FadeIn>
               <span className="font-sans text-xs tracking-[0.4em] uppercase text-secondary mb-6 block">Visual Poetry</span>
@@ -309,11 +339,7 @@ export default function App() {
             </FadeIn>
           </div>
 
-          <motion.div
-            className="flex gap-8 px-6 md:px-12 pb-12 hide-scrollbar snap-x touch-pan-x cursor-grab active:cursor-grabbing"
-            animate={{ x: playingVideoIndex !== null ? 0 : [0, -1000, 0] }}
-            transition={{ repeat: playingVideoIndex !== null ? undefined : Infinity, duration: 40, ease: "linear" }}
-          >
+          <div className="flex gap-4 px-6 md:px-10 pb-8 overflow-x-auto hide-scrollbar snap-x snap-mandatory touch-pan-x cursor-grab active:cursor-grabbing">
             {[
               { video: '/videos/5th video.mp4', label: '01' },
               { video: '/videos/6th video.mp4', label: '02' },
@@ -326,7 +352,7 @@ export default function App() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="min-w-[300px] md:min-w-[450px] aspect-[9/16] bg-surface-container-high relative group overflow-hidden border border-outline-variant/10 shadow-2xl snap-center transition-all duration-700 hover:scale-[1.02]"
+                className="flex-none h-[45vh] md:h-[80vh] aspect-[9/16] bg-surface-container-high relative group overflow-hidden border border-outline-variant/10 shadow-2xl snap-center transition-all duration-700 hover:scale-[1.02]"
               >
                 <video
                   ref={(video) => {
@@ -338,7 +364,6 @@ export default function App() {
                   }}
                   src={item.video}
                   className="w-full h-full object-cover"
-                  muted
                 />
                 <div className="absolute inset-0 border-[20px] md:border-[30px] border-transparent group-hover:border-surface/10 transition-all duration-700"></div>
                 <button
@@ -357,10 +382,10 @@ export default function App() {
                 </button>
               </div>
             ))}
-          </motion.div>
+          </div>
         </section>
 
-        {/* Designer Profile */}
+        {/* Designer Profile 
         <section className="bg-surface-container-low py-32 md:py-48 px-6 md:px-12" id="story">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 md:gap-32 items-center">
             <div className="w-full lg:w-5/12 relative order-2 lg:order-1">
@@ -400,7 +425,7 @@ export default function App() {
               </FadeIn>
             </div>
           </div>
-        </section>
+        </section> *}
 
         {/* Scrolling Marquee */}
         <section className="py-24 bg-primary overflow-hidden border-y border-white/10">
