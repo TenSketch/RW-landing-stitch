@@ -196,7 +196,7 @@ export default function App() {
                 <h2 className="font-serif text-5xl md:text-6xl text-primary font-bold">The Curated Vault</h2>
               </FadeIn>
               <FadeIn direction="left">
-                <a href="#" className="group flex items-center gap-3 text-primary font-sans text-xs tracking-widest uppercase border-b border-primary pb-2 hover:text-secondary hover:border-secondary transition-all">
+                <a href="https://revivewardrobe.com/shop/category/graceful-abayas" className="group flex items-center gap-3 text-primary font-sans text-xs tracking-widest uppercase border-b border-primary pb-2 hover:text-secondary hover:border-secondary transition-all">
                   Archive Access <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </a>
               </FadeIn>
