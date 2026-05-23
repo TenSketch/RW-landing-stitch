@@ -196,7 +196,7 @@ export default function App() {
                 <h2 className="font-serif text-5xl md:text-6xl text-primary font-bold">The Curated Vault</h2>
               </FadeIn>
               <FadeIn direction="left">
-                <a href="https://revivewardrobe.com/shop/category/graceful-abayas" className="group flex items-center gap-3 text-primary font-sans text-xs tracking-widest uppercase border-b border-primary pb-2 hover:text-secondary hover:border-secondary transition-all">
+                <a href="https://revivewardrobe.com/shop/category/abaya" className="group flex items-center gap-3 text-primary font-sans text-xs tracking-widest uppercase border-b border-primary pb-2 hover:text-secondary hover:border-secondary transition-all">
                   Archive Access <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </a>
               </FadeIn>
@@ -207,27 +207,28 @@ export default function App() {
                 title: "Aurora Blossom Abaya",
                 img: "assets/Aurora Blossom Abaya/close.png",
                 offset: false,
-                link: "https://revivewardrobe.com/product/aurora-blossom-abaya"
+                link: "https://revivewardrobe.com/product/aurora-blossom-abaya-l"
               },
               {
-                title: "Twilight Grace Abaya",
-                img: "/assets/Twilight Grace Abaya/Closeup.png",
+                title: "Noir Veil Elegance Abaya",
+                img: "/assets/Noir Veil Elegance Abaya/close.png",
                 offset: true,
-                link: "https://revivewardrobe.com/product/twilight-grace-abaya"
-              },
-              {
-                title: "Midnight Elegance Abaya",
-                img: "/assets/Midnight Elegance Abaya/close.png",
-                offset: true,
-                link: "https://revivewardrobe.com/product/midnight-elegance-abaya"
+                link: "https://revivewardrobe.com/product/noir-veil-elegance-abaya-l"
               },
               {
                 title: "Regal Rhythm Abaya",
                 img: "/assets/Regal Rhythm Abaya/closeup.png",
                 offset: false,
-                link: "https://revivewardrobe.com/product/regal-rhythm-abaya"
-              }].map((item, idx) => (
-                <div key={idx} className={`flex flex-col gap-6 ${(idx === 1 || idx === 3) ? 'mt-50' : ''}`}>
+                link: "https://revivewardrobe.com/product/regal-rhythm-abaya-l"
+              },
+              {
+                title: "Royal Noor Embellished Abaya",
+                img: "/assets/Royal Noor Embellished Abaya/close.png",
+                offset: true,
+                link: "https://revivewardrobe.com/product/royal-noor-embellished-abaya-l"
+              }
+              ].map((item, idx) => (
+                <div key={idx} className={`flex flex-col gap-6 ${(idx === 1 || idx === 3) ? 'mt-70' : ''}`}>
                   <div className="group relative overflow-hidden">
                     <img
                       src={item.img}
@@ -262,37 +263,7 @@ export default function App() {
               </FadeIn>
             </div>
 
-            {/* Mobile: auto-scrolling carousel */}
-            <div className="sovereign-mobile-carousel md:hidden">
-              <div className="sovereign-scroll-track">
-                {[
-                  { title: "Aurora Blossom Abaya", img: "/assets/Aurora Blossom Abaya/long.jpeg" },
-                  { title: "Twilight Grace Abaya", img: "/assets/Twilight Grace Abaya/Closeup.png" },
-                  { title: "Midnight Elegance Abaya", img: "/assets/Midnight Elegance Abaya/close.png" },
-                  { title: "Regal Rhythm Abaya", img: "/assets/Regal Rhythm Abaya/closeup.png" },
-                  { title: "Lunar Glow Abaya", img: "/assets/close.png" },
-                  { title: "Eternal Noir Abaya", img: "/assets/Eternal Noir Abaya/long.jpg" },
-                  /* Duplicate for seamless loop */
-                  { title: "Aurora Blossom Abaya", img: "/assets/Aurora Blossom Abaya/long.jpeg" },
-                  { title: "Twilight Grace Abaya", img: "/assets/Twilight Grace Abaya/Closeup.png" },
-                  { title: "Midnight Elegance Abaya", img: "/assets/Midnight Elegance Abaya/close.png" },
-                  { title: "Regal Rhythm Abaya", img: "/assets/Regal Rhythm Abaya/closeup.png" },
-                  { title: "Lunar Glow Abaya", img: "/assets/close.png" },
-                  { title: "Eternal Noir Abaya", img: "/assets/Eternal Noir Abaya/long.jpg" },
-                ].map((item, idx) => (
-                  <div key={idx} className="sovereign-scroll-item">
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="sovereign-scroll-img"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Tablet & Desktop: masonry grid */}
-            <div className="masonry-grid hidden md:block" style={{ columnCount: 3, columnGap: '1rem' }}>
+            <div className="masonry-grid" style={{ columnCount: 3, columnGap: '1rem' }}>
               {[{
                 title: "Aurora Blossom Abaya",
                 img: "/assets/Aurora Blossom Abaya/long.jpeg",
@@ -330,7 +301,7 @@ export default function App() {
         </section>
 
         {/* Atelier in Motion */}
-        <section ref={atelierSectionRef} className="py-16 md:py-24 bg-surface overflow-hidden">
+        <section ref={atelierSectionRef} className="py-32 md:py-48 bg-surface overflow-hidden">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12 mb-20 text-center">
             <FadeIn>
               <span className="font-sans text-xs tracking-[0.4em] uppercase text-secondary mb-6 block">Visual Poetry</span>
@@ -339,7 +310,9 @@ export default function App() {
             </FadeIn>
           </div>
 
-          <div className="flex gap-4 px-6 md:px-10 pb-8 overflow-x-auto hide-scrollbar snap-x snap-mandatory touch-pan-x cursor-grab active:cursor-grabbing">
+          <div
+            className="flex gap-8 px-6 md:px-12 pb-12 overflow-x-auto snap-x touch-pan-x cursor-grab active:cursor-grabbing scrollbar-hide"
+          >
             {[
               { video: '/videos/5th video.mp4', label: '01' },
               { video: '/videos/6th video.mp4', label: '02' },
@@ -352,7 +325,7 @@ export default function App() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="flex-none h-[45vh] md:h-[80vh] aspect-[9/16] bg-surface-container-high relative group overflow-hidden border border-outline-variant/10 shadow-2xl snap-center transition-all duration-700 hover:scale-[1.02]"
+                className="min-w-[300px] md:min-w-[450px] aspect-[9/16] bg-surface-container-high relative group overflow-hidden border border-outline-variant/10 shadow-2xl snap-center transition-all duration-700 hover:scale-[1.02]"
               >
                 <video
                   ref={(video) => {
@@ -385,7 +358,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Designer Profile 
+        {/* Designer Profile */}
         <section className="bg-surface-container-low py-32 md:py-48 px-6 md:px-12" id="story">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 md:gap-32 items-center">
             <div className="w-full lg:w-5/12 relative order-2 lg:order-1">
@@ -417,7 +390,7 @@ export default function App() {
                   With over two decades of defining high-fashion in the Emirates, Rukhsana Shaik brings an unparalleled eye for detail and cultural fusion. Her designs are collected, not just bought.
                 </p>
                 <div className="pt-12">
-                  <a href="#" className="inline-flex items-center gap-6 group">
+                  <a href="https://revivewardrobe.com/about" className="inline-flex items-center gap-6 group">
                     <span className="font-sans text-sm tracking-[0.2em] uppercase border-b border-primary pb-2 group-hover:text-secondary group-hover:border-secondary transition-all">Our Full Story</span>
                     <ArrowRight className="text-primary group-hover:translate-x-3 transition-transform" />
                   </a>
@@ -425,7 +398,7 @@ export default function App() {
               </FadeIn>
             </div>
           </div>
-        </section> *}
+        </section>
 
         {/* Scrolling Marquee */}
         <section className="py-24 bg-primary overflow-hidden border-y border-white/10">
@@ -451,9 +424,9 @@ export default function App() {
                 If our current collection has already found its owners, Rukhsana Shaik offers private commissions. We will design a piece exclusively for your silhouette and spirit.
               </p>
               <div className="flex flex-col md:flex-row gap-8 w-full md:w-auto justify-center">
-                <button className="bg-primary text-white px-12 md:px-16 py-6 text-xs tracking-[0.3em] uppercase font-bold hover:bg-primary-container transition-all hover:scale-[1.05]">
+                <a href="https://revivewardrobe.com/shop/category/abaya" className="inline-flex items-center justify-center bg-primary text-white px-12 md:px-16 py-6 text-xs tracking-[0.3em] uppercase font-bold hover:bg-primary-container transition-all hover:scale-[1.05]">
                   Grab your unique piece
-                </button>
+                </a>
               </div>
             </FadeIn>
           </div>
