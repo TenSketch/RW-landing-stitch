@@ -29,11 +29,11 @@
 
 @layer base {
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth overflow-x-hidden;
   }
 
   body {
-    @apply bg-surface text-on-surface font-sans antialiased;
+    @apply bg-surface text-on-surface font-sans antialiased overflow-x-hidden w-full;
   }
 }
 
@@ -65,5 +65,35 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+.perspective-\[1000px\] {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+  /* Reduce vertical paddings on sections by 30% */
+  section {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
+  }
+  
+  /* Offset body for bottom sticky mobile CTA */
+  body {
+    padding-bottom: 96px !important;
   }
 }

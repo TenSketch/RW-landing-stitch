@@ -1,0 +1,53 @@
+{
+  "announcement": "Free Shipping Across the UAE + Cash on Delivery Available",
+  "contact": {
+    "phone": "+971582447684",
+    "whatsappUrl": "https://wa.me/971582447684",
+    "instagram": "https://www.instagram.com/premium.abayas.uae?igsh=MW9wcm42d3BtaWQwZg%3D%3D",
+    "facebook": "https://www.facebook.com/revivewardrobe/"
+  },
+  "valueProps": [
+    { "icon": "⭐", "text": "100% Original Designs" },
+    { "icon": "🚚", "text": "Free Shipping UAE" },
+    { "icon": "🔄", "text": "Easy Exchange" },
+    { "icon": "✨", "text": "Limited 1-of-1 Pieces" }
+  ],
+  "trustStrip": [
+    { "icon": "Truck", "text": "Free Shipping UAE" },
+    { "icon": "CreditCard", "text": "COD Available" },
+    { "icon": "RotateCw", "text": "Easy 7-Day Exchange" },
+    { "icon": "Lock", "text": "100% Secure Payments" },
+    { "icon": "Gift", "text": "Premium Packaging" }
+  ],
+  "fabricShowcase": [
+    { "title": "Premium Nida", "traits": ["Soft Sheen", "Wrinkle Resistant", "Opaque"], "desc": "The gold standard of abaya fabric. Incredibly smooth feel with a subtle elegant sheen." },
+    { "title": "Imported Saudi Crepe", "traits": ["Opaque Drape", "Matte Texture", "Crease-Free"], "desc": "Imported Saudi crepe that holds structure beautifully, remains completely opaque, and drapes flawlessly." },
+    { "title": "Soft Satin Finish", "traits": ["Breathable", "Fluid Motion", "Summer Friendly"], "desc": "Perfect for festive drops. Highly breathable, catches reflections beautifully, and feels cool on the skin." }
+  ],
+  "brandPromises": [
+    { "icon": "PenTool", "title": "Original Designs", "desc": "100% conceptualized in-house. We do not copy; every pattern is a unique designer creation." },
+    { "icon": "ShieldCheck", "title": "Premium Stitching", "desc": "Reinforced luxury double-seams, tailored margins, and pristine hem detailing for heavy durability." },
+    { "icon": "Diamond", "title": "Luxury Fabrics", "desc": "Sourced from the finest mills in Korea, Saudi Arabia, and Dubai. Handpicked for tactile luxury." },
+    { "icon": "Sparkles", "title": "Limited Editions", "desc": "Crafted in micro-batches (often only 2-3 pieces per design). You will rarely see anyone in your exact abaya." },
+    { "icon": "RotateCw", "title": "Easy Returns & Exchange", "desc": "Hassle-free 7-day exchange window if size or fitting is not absolutely perfect for you." },
+    { "icon": "Truck", "title": "Fast Courier Delivery", "desc": "Dispatched securely within 24 hours across the UAE with luxury signature packaging." }
+  ],
+  "faqs": [
+    {
+      "q": "What is the shipping timeframe and cost?",
+      "a": "We offer complimentary express delivery across the UAE. Orders are processed within 24 hours and typically arrive within 1-2 business days."
+    },
+    {
+      "q": "Is Cash on Delivery (COD) available?",
+      "a": "Yes, we provide Cash on Delivery (COD) for orders shipped within the UAE at no additional processing fee. You can inspect the signature packaging on arrival."
+    },
+    {
+      "q": "How do I choose the correct abaya size?",
+      "a": "Abaya sizing is primarily determined by your height in inches from shoulder to hem (e.g. Size 54 is 54 inches long). Please refer to our Size Guide widget above or consult designer Rukhsana directly via WhatsApp for a tailored fit."
+    },
+    {
+      "q": "What is the return and exchange policy?",
+      "a": "We offer a seamless 7-day exchange window for all unworn pieces in their original signature packaging. If you need a size adjustment or silhouette exchange, our courier will collect the package directly from your address."
+    }
+  ]
+}
