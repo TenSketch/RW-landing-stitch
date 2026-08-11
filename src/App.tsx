@@ -291,6 +291,7 @@ const ConciergeWidget = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-14 h-14 bg-[#25D366] text-white hover:bg-[#20ba56] rounded-full flex items-center justify-center shadow-2xl border border-white/10 hover:scale-105 transition-all group relative cursor-pointer"
+        aria-label="Open WhatsApp concierge"
       >
         <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-gold rounded-full border-2 border-surface animate-ping" />
         <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-gold rounded-full border-2 border-surface" />
@@ -653,7 +654,7 @@ export default function App() {
         {/* Top Announcement Bar */}
         <div className="w-full bg-primary text-white py-2 px-4 text-center text-[8px] md:text-[9px] font-sans tracking-[0.2em] uppercase font-bold border-b border-gold/15 flex items-center justify-center gap-2">
           <Sparkles size={10} className="text-gold animate-pulse" />
-          <span>{content.announcement}</span>
+          <span>Buy 2+ Pieces & Get AED 25 Off — Free Dubai Shipping</span>
           <Sparkles size={10} className="text-gold animate-pulse" />
         </div>
         
@@ -695,16 +696,25 @@ export default function App() {
           </a>
         </div>
 
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-primary p-2">
+        <button
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="md:hidden text-primary p-2"
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+        >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
+              id="mobile-menu"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
+              role="dialog"
+              aria-label="Mobile navigation"
               className="absolute top-full left-0 w-full bg-surface border-b border-outline-variant/10 md:hidden flex flex-col p-8 gap-6 z-40"
             >
               <a
@@ -774,42 +784,61 @@ export default function App() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/15 to-black/15 z-10"></div>
           </motion.div>
 
-          <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center pb-4 pt-20">
-            <div className="flex flex-col items-center">
-              {/* Dynamic text line aligned with current background slide */}
-              <div className="relative h-16 w-full mb-6 overflow-hidden flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={currentHeroSlide}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.6 }}
-                    className="font-serif text-base md:text-2xl text-white tracking-[0.25em] uppercase font-light text-center select-none"
-                  >
-                    {heroSlides[currentHeroSlide].type === 'video' && (
-                      <Play size={12} fill="currentColor" className="inline-block mr-3 -mt-1 text-gold animate-pulse" />
-                    )}
-                    {heroSlides[currentHeroSlide].name}
-                  </motion.span>
-                </AnimatePresence>
+          <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center pb-10 md:pb-14 pt-20">
+            <div className="flex flex-col items-center gap-6">
+              {/* Headline */}
+              <h1 className="font-serif text-2xl md:text-4xl lg:text-5xl text-white tracking-[0.12em] uppercase font-light text-center leading-tight select-none">
+                Not Made for Everyone.
+                <br />
+                Made for You.
+              </h1>
+
+              {/* Subheadline */}
+              <p className="font-sans text-xs md:text-sm text-white/80 tracking-wider uppercase text-center max-w-lg select-none">
+                Exclusive Abayas & Jalabiyas · Limited Production · Original Designs · Made in UAE
+              </p>
+
+              {/* Offer pill */}
+              <div className="bg-gold/20 border border-gold/40 backdrop-blur-sm px-4 py-1.5 rounded-sm">
+                <span className="font-sans text-[10px] md:text-xs text-gold tracking-[0.15em] uppercase font-bold">
+                  Buy 2+ Pieces & Get AED 25 Off
+                </span>
               </div>
 
-              {/* Single Shop CTA Button (Small size) */}
-              <a
-                href="#collection"
-                className="bg-gold hover:bg-gold-dark text-primary-light font-bold text-[10px] tracking-[0.2em] uppercase px-6 py-3 transition-all duration-300 shadow-lg hover:scale-[1.02] cursor-pointer inline-flex items-center justify-center rounded-sm"
-              >
-                Shop Collection
-              </a>
+              {/* CTA buttons */}
+              <div className="flex flex-col sm:flex-row items-center gap-3 mt-2">
+                <a
+                  href="https://revivewardrobe.com/shop/category/abaya"
+                  className="bg-gold hover:bg-gold-dark text-primary-light font-bold text-[10px] tracking-[0.2em] uppercase px-8 py-3.5 transition-all duration-300 shadow-lg hover:scale-[1.02] cursor-pointer inline-flex items-center justify-center rounded-sm"
+                >
+                  Shop The Collection
+                </a>
+                <a
+                  href="https://wa.me/971582447684?text=Hi%20Revive%20Wardrobe,%20I%20would%20like%20to%20ask%20about%20a%20product%20and%20styling."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-white/30 hover:border-gold hover:bg-gold/10 text-white font-bold text-[10px] tracking-[0.2em] uppercase px-8 py-3.5 transition-all duration-300 cursor-pointer inline-flex items-center justify-center rounded-sm"
+                >
+                  Ask On WhatsApp
+                </a>
+              </div>
+              <span className="font-sans text-[9px] text-white/40 tracking-wider uppercase">
+                For product & styling enquiries
+              </span>
             </div>
           </div>
         </section>
 
-        {/* Trust Strip */}
+        {/* Trust Strip — Conversion focused */}
         <section className="bg-surface-container py-8 border-b border-outline-variant/10 text-primary">
           <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
-            {content.trustStrip.map((item, idx) => {
+            {[
+              { icon: 'Diamond', text: 'One Design · One Creation' },
+              { icon: 'MapPin', text: 'Made in UAE' },
+              { icon: 'Truck', text: 'Free Dubai Shipping' },
+              { icon: 'RotateCw', text: '7-Day Returns' },
+              { icon: 'Gift', text: 'Premium Packaging' },
+            ].map((item, idx) => {
               const IconComponent = iconMap[item.icon];
               return (
                 <div key={idx} className={`flex flex-col items-center gap-2 ${idx === 4 ? 'col-span-2 md:col-span-1' : ''}`}>
@@ -831,18 +860,18 @@ export default function App() {
                 {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-gold text-gold" />)}
               </div>
               <span className="font-sans text-[10px] tracking-widest uppercase font-bold text-secondary">
-                Loved by 1,500+ Women
+                Trusted by Women Who Value Elegance
               </span>
             </div>
             <div className="h-px w-12 bg-gold/30 sm:h-8 sm:w-px" />
             <div>
-              <span className="font-serif text-2xl font-bold text-primary font-mono block">4.9 / 5</span>
-              <span className="font-sans text-[9px] tracking-widest uppercase text-outline/80">Average Customer Rating</span>
+              <span className="font-serif text-2xl font-bold text-primary font-mono block">500+</span>
+              <span className="font-sans text-[9px] tracking-widest uppercase text-outline/80">Customers Served</span>
             </div>
             <div className="h-px w-12 bg-gold/30 sm:h-8 sm:w-px" />
             <div>
-              <span className="font-serif text-2xl font-bold text-primary font-mono block">500+</span>
-              <span className="font-sans text-[9px] tracking-widest uppercase text-outline/80">Premium Orders Delivered</span>
+              <span className="font-serif text-2xl font-bold text-primary font-mono block">Original</span>
+              <span className="font-sans text-[9px] tracking-widest uppercase text-outline/80">Exclusive Designs</span>
             </div>
           </div>
         </section>
@@ -2318,7 +2347,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Exit Intent Coupon Modal */}
+      {/* Exit Intent Offer Modal */}
       <AnimatePresence>
         {isExitIntentOpen && (
           <motion.div
@@ -2338,6 +2367,7 @@ export default function App() {
               <button
                 onClick={() => setIsExitIntentOpen(false)}
                 className="absolute top-4 right-4 p-2 bg-primary hover:bg-gold transition-colors text-white rounded-full cursor-pointer animate-fade-in"
+                aria-label="Close offer modal"
               >
                 <X size={14} />
               </button>
@@ -2347,25 +2377,28 @@ export default function App() {
               </div>
 
               <span className="font-sans text-[10px] tracking-[0.25em] uppercase text-gold font-bold block mb-2">
-                Exclusive Invitation
+                Exclusive Offer
               </span>
-              <h3 className="font-serif text-3xl text-primary font-bold mb-3">Wait! Don’t Leave Empty Handed</h3>
+              <h3 className="font-serif text-3xl text-primary font-bold mb-3">Wait! Don't Leave Empty Handed</h3>
               <p className="text-xs text-on-surface-variant font-light mb-6 leading-relaxed">
-                Join the Revive Wardrobe Collector Registry today. Enjoy <strong>AED 150 OFF</strong> on your first order of designer modest wear.
+                Buy any <strong>2 or more pieces</strong> from our collection and receive <strong>AED 25 OFF</strong> your order.
               </p>
 
               <div className="space-y-3">
                 <a
-                  href="https://wa.me/971582447684?text=Hi%20Revive%20Wardrobe,%20I'd%20like%20to%20join%20the%20VIP%20Registry%20and%20claim%20my%20AED%20150%20welcome%20coupon."
+                  href="https://revivewardrobe.com/shop/category/abaya"
+                  className="w-full bg-primary hover:bg-gold text-white font-bold text-xs tracking-widest uppercase py-3.5 transition-colors cursor-pointer shadow-md flex items-center justify-center gap-2 rounded-sm font-sans"
+                >
+                  Shop The Collection
+                </a>
+                <a
+                  href="https://wa.me/971582447684?text=Hi%20Revive%20Wardrobe,%20I%20would%20like%20to%20ask%20about%20your%20buy-2%20offer%20and%20a%20few%20products."
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => {
-                    alert('VIP Coupon Code: REVIVE150 has been copied! Opening WhatsApp concierge...');
-                    setIsExitIntentOpen(false);
-                  }}
-                  className="w-full bg-[#25D366] hover:bg-[#20ba56] text-white font-bold text-xs tracking-widest uppercase py-3.5 transition-colors cursor-pointer shadow-md flex items-center justify-center gap-2 rounded-sm font-sans"
+                  onClick={() => setIsExitIntentOpen(false)}
+                  className="w-full border border-primary text-primary hover:bg-primary hover:text-white font-bold text-xs tracking-widest uppercase py-3.5 transition-colors cursor-pointer shadow-md flex items-center justify-center gap-2 rounded-sm font-sans"
                 >
-                  <Phone size={14} fill="white" className="text-white" /> Claim AED 150 via WhatsApp
+                  <MessageCircle size={14} /> Ask On WhatsApp
                 </a>
               </div>
             </motion.div>
@@ -2379,23 +2412,32 @@ export default function App() {
           <div className="flex gap-0.5 text-gold mb-0.5">
             {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-gold text-gold" />)}
           </div>
-          <span className="text-[10px] font-bold text-primary tracking-wider uppercase">Loved by 1,500+ Women</span>
-          <span className="text-[8px] text-outline">Verified Buyers Review: 4.9 Rating</span>
+          <span className="text-[10px] font-bold text-primary tracking-wider uppercase">Trusted by Women Who Value Elegance</span>
+          <span className="text-[8px] text-outline">500+ Customers Served</span>
         </div>
       </div>
 
       <div className="fixed bottom-0 left-0 w-full z-50 bg-surface/95 backdrop-blur-md border-t border-gold/15 p-3 pb-5 flex md:hidden items-center justify-between shadow-2xl animate-fade-in">
         <div className="flex flex-col text-left font-sans pl-2">
-          <span className="text-[8px] tracking-[0.2em] uppercase text-gold font-bold">Launch Pricing Drop VI</span>
-          <span className="text-[10px] text-outline font-light line-through">AED 350</span>
-          <span className="text-xs font-bold text-primary font-mono -mt-0.5">From AED 225</span>
+          <span className="text-[8px] tracking-[0.2em] uppercase text-gold font-bold">Exclusive Original Designs</span>
+          <span className="text-xs font-bold text-primary font-mono -mt-0.5">Shop The Collection</span>
         </div>
-        <a
-          href="https://revivewardrobe.com"
-          className="bg-primary hover:bg-gold text-white font-bold text-[10px] tracking-widest uppercase px-4 py-2.5 transition-colors shrink-0 shadow-md cursor-pointer rounded-sm"
-        >
-          ✨ Access Atelier
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href="https://wa.me/971582447684?text=Hi%20Revive%20Wardrobe,%20I%20would%20like%20to%20ask%20about%20a%20product."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border border-primary text-primary hover:bg-primary hover:text-white font-bold text-[10px] tracking-widest uppercase px-3 py-2 transition-colors shrink-0 cursor-pointer rounded-sm"
+          >
+            Ask
+          </a>
+          <a
+            href="https://revivewardrobe.com/shop/category/abaya"
+            className="bg-primary hover:bg-gold text-white font-bold text-[10px] tracking-widest uppercase px-4 py-2.5 transition-colors shrink-0 shadow-md cursor-pointer rounded-sm"
+          >
+            Shop Now
+          </a>
+        </div>
       </div>
     </div>
   );
