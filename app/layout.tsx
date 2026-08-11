@@ -78,7 +78,7 @@ const organizationSchema = {
   description:
     'Premium fashion brand creating original, limited-production abayas and jalabiyas in the UAE.',
   sameAs: [
-    'https://www.instagram.com/premium.abayas.uae',
+    'https://www.instagram.com/revive.wardrobe.ae/',
     'https://www.facebook.com/revivewardrobe/',
   ],
   contactPoint: {

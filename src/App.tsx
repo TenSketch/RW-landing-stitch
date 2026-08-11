@@ -1528,7 +1528,7 @@ export default function App() {
               </FadeIn>
               <FadeIn direction="left">
                 <a
-                  href="https://www.instagram.com/premium.abayas.uae"
+                  href="https://www.instagram.com/revive.wardrobe.ae/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-primary text-white px-8 py-3.5 text-xs tracking-[0.25em] uppercase font-medium hover:bg-primary-light transition-all duration-500"
@@ -1542,7 +1542,7 @@ export default function App() {
               {instagramPosts.map((img, idx) => (
                 <a
                   key={idx}
-                  href="https://www.instagram.com/premium.abayas.uae"
+                  href="https://www.instagram.com/revive.wardrobe.ae/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="aspect-square overflow-hidden group relative"
@@ -2014,7 +2014,7 @@ export default function App() {
 
         <div className="flex gap-10">
           <a
-            href="https://www.instagram.com/premium.abayas.uae?igsh=MW9wcm42d3BtaWQwZg%3D%3D"
+            href="https://www.instagram.com/revive.wardrobe.ae/"
             className="hover:opacity-70 transition-opacity"
             style={{ color: '#610000' }}
           >
