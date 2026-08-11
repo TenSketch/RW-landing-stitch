@@ -1122,7 +1122,7 @@ export default function App() {
             </FadeIn>
           </div>
 
-          <div className="flex gap-8 px-6 md:px-12 pb-12 overflow-x-auto snap-x touch-pan-x cursor-grab active:cursor-grabbing scrollbar-hide">
+          <div className="flex gap-8 px-6 md:px-12 pb-12 overflow-x-auto snap-x touch-pan-x cursor-grab active:cursor-grabbing hide-scrollbar">
             {[
               { video: '/videos/5th video.mp4', label: '01' },
               { video: '/videos/6th video.mp4', label: '02' },
@@ -1313,7 +1313,7 @@ export default function App() {
                   <img
                     src={item.img}
                     alt={item.product.title}
-                    className="w-full h-auto display-block transition-transform duration-[1200ms] ease-[0.22,1,0.36,1] group-hover:scale-105"
+                    className="w-full h-auto block transition-transform duration-[1200ms] ease-[0.22,1,0.36,1] group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
                     <span className="font-sans text-[8px] tracking-[0.4em] uppercase text-gold font-bold mb-1">
@@ -2006,6 +2006,8 @@ export default function App() {
         <div className="font-sans text-[10px] tracking-[0.3em] uppercase text-outline/50 border-t border-outline-variant/10 pt-16 w-full text-center">
           © {new Date().getFullYear()} REVIVE WARDROBE. ALL RIGHTS RESERVED.
         </div>
+
+        <div className="text-gray-400 text-sm mt-2">Designed with <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" className="svg-inline--fa fa-heart text-red-500 inline-block w-4 h-4 mx-1 align-text-bottom" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"></path></svg> by <a href="https://tensketch.com" className="hover:text-gold transition-colors">TenSketch</a></div>
       </footer>
 
       {/* Premium Luxury Features */}
@@ -2382,7 +2384,7 @@ export default function App() {
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 w-full z-45 bg-surface/95 backdrop-blur-md border-t border-gold/15 p-3 pb-5 flex md:hidden items-center justify-between shadow-2xl animate-fade-in">
+      <div className="fixed bottom-0 left-0 w-full z-50 bg-surface/95 backdrop-blur-md border-t border-gold/15 p-3 pb-5 flex md:hidden items-center justify-between shadow-2xl animate-fade-in">
         <div className="flex flex-col text-left font-sans pl-2">
           <span className="text-[8px] tracking-[0.2em] uppercase text-gold font-bold">Launch Pricing Drop VI</span>
           <span className="text-[10px] text-outline font-light line-through">AED 350</span>
